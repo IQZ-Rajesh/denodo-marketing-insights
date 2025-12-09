@@ -1,0 +1,6 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE USER marketing_insights_developer '${users.marketing_insights_developer.PASSWORD}'  ${users.marketing_insights_developer.PASSWORD.ENCRYPTED} ${users.marketing_insights_developer.PASSWORD.ALGORITHM}  ''
+GRANT ROLE use_large_language_model,create_role,create_user
+GRANT CONNECT ON admin
+GRANT ADMIN ON resort_marketing_insights;
+
