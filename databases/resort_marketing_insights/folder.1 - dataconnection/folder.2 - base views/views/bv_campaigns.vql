@@ -17,12 +17,12 @@ CREATE OR REPLACE WRAPPER JDBC "bv_Campaigns"
     INDEX 'PK__Campaign__905B681C6845D663' CLUSTER UNIQUE PRIMARY ( 'campaign_id' );
 
 CREATE OR REPLACE TABLE bv_campaigns I18N us_est (
-        campaign_id:int (notnull, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
-        campaign_name:text (sourcetypeid = '12', sourcetypesize = '100'),
-        start_date:localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10'),
-        end_date:localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10'),
-        budget:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '2', sourcetypesize = '18'),
-        status:text (sourcetypeid = '12', sourcetypesize = '50')
+        campaign_id:int (notnull, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = 'Represents the unique identifier for each campaign.'),
+        campaign_name:text (sourcetypeid = '12', sourcetypesize = '100', description = 'Holds the name or title associated with the campaign.'),
+        start_date:localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10', description = 'Indicates the date when the campaign begins.'),
+        end_date:localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10', description = 'Specifies the date when the campaign ends.'),
+        budget:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '2', sourcetypesize = '18', description = 'Represents the allocated financial resources for the campaign.'),
+        status:text (sourcetypeid = '12', sourcetypesize = '50', description = 'Shows the current state or progress of the campaign.')
     )
     FOLDER = '/1 - dataconnection/2 - base views'
     CONSTRAINT 'PK__Campaign__905B681C6845D663' PRIMARY KEY ( 'campaign_id' )
