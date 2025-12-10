@@ -1,0 +1,61 @@
+﻿# REQUIRES-PROPERTIES-FILE - # Do not remove this comment!
+CREATE OR REPLACE WRAPPER JDBC "bv_Customers"
+    FOLDER = '/1 - dataconnection/2 - base views'
+    DATASOURCENAME=ds_sql_marketingisnights
+    CATALOGNAME='${databases.resort_marketing_insights.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_customers.CATALOGNAME}' 
+    SCHEMANAME='${databases.resort_marketing_insights.folder.1 - dataconnection.folder.2 - base views.views.jdbc.bv_customers.SCHEMANAME}' 
+    RELATIONNAME='Customers' 
+    OUTPUTSCHEMA (
+        customer_id = 'customer_id' :'java.lang.Integer' (OPT) (sourcetypedecimals='0', sourcetyperadix='10', sourcetypesize='10', sourcetypeid='4', sourcetypename='int')  NOT NULL SORTABLE,
+        first_name = 'first_name' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        last_name = 'last_name' :'java.lang.String' (OPT) (sourcetypesize='50', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        email = 'email' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        phone = 'phone' :'java.lang.String' (OPT) (sourcetypesize='20', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        address = 'address' :'java.lang.String' (OPT) (sourcetypesize='255', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        city = 'city' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        state = 'state' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        country = 'country' :'java.lang.String' (OPT) (sourcetypesize='100', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        postal_code = 'postal_code' :'java.lang.String' (OPT) (sourcetypesize='20', sourcetypeid='12', sourcetypename='varchar')  SORTABLE,
+        date_created = 'date_created' :'java.time.LocalDate' (OPT) (sourcetypedecimals='0', sourcetypesize='10', sourcetypeid='91', sourcetypename='date')  SORTABLE
+    )
+    CONSTRAINT 'PK__Customer__CD65CB85A2FA7526' PRIMARY KEY ( 'customer_id' )
+    INDEX 'PK__Customer__CD65CB85A2FA7526' CLUSTER UNIQUE PRIMARY ( 'customer_id' );
+
+CREATE OR REPLACE TABLE bv_customers I18N us_est (
+        customer_id:int (notnull, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
+        first_name:text (sourcetypeid = '12', sourcetypesize = '50'),
+        last_name:text (sourcetypeid = '12', sourcetypesize = '50'),
+        email:text (sourcetypeid = '12', sourcetypesize = '100'),
+        phone:text (sourcetypeid = '12', sourcetypesize = '20'),
+        address:text (sourcetypeid = '12', sourcetypesize = '255'),
+        city:text (sourcetypeid = '12', sourcetypesize = '100'),
+        state:text (sourcetypeid = '12', sourcetypesize = '100'),
+        country:text (sourcetypeid = '12', sourcetypesize = '100'),
+        postal_code:text (sourcetypeid = '12', sourcetypesize = '20'),
+        date_created:localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10')
+    )
+    FOLDER = '/1 - dataconnection/2 - base views'
+    CONSTRAINT 'PK__Customer__CD65CB85A2FA7526' PRIMARY KEY ( 'customer_id' )
+    CACHE OFF
+    BATCHSIZEINCACHE DEFAULT
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD "bv_Customers"(
+        I18N us_est
+        CONSTRAINTS (
+             ADD customer_id (any) OPT ANY
+             ADD first_name (any) OPT ANY
+             ADD last_name (any) OPT ANY
+             ADD email (any) OPT ANY
+             ADD phone (any) OPT ANY
+             ADD address (any) OPT ANY
+             ADD city (any) OPT ANY
+             ADD state (any) OPT ANY
+             ADD country (any) OPT ANY
+             ADD postal_code (any) OPT ANY
+             ADD date_created (any) OPT ANY
+        )
+        OUTPUTLIST (address, city, country, customer_id, date_created, email, first_name, last_name, phone, postal_code, state
+        )
+        WRAPPER (jdbc "bv_Customers")
+    );
+
