@@ -18,11 +18,11 @@ CREATE OR REPLACE WRAPPER JDBC "bv_Interactions"
     INDEX 'PK__Interact__605F8FE6E4DAE0C3' CLUSTER UNIQUE PRIMARY ( 'interaction_id' );
 
 CREATE OR REPLACE TABLE bv_interactions I18N us_est (
-        interaction_id:int (notnull, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
-        lead_id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
-        interaction_type:text (sourcetypeid = '12', sourcetypesize = '50'),
-        interaction_date:timestamp (sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23'),
-        notes:text (sourcetypeid = '12', sourcetypesize = '2147483647')
+        interaction_id:int (notnull, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = 'Represents the unique identifier for each interaction within the dataset.'),
+        lead_id:int (sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = 'Denotes the identifier associated with the lead involved in the interaction.'),
+        interaction_type:text (sourcetypeid = '12', sourcetypesize = '50', description = 'Indicates the nature or category of the interaction.'),
+        interaction_date:timestamp (sourcetypeid = '93', sourcetypedecimals = '3', sourcetypesize = '23', description = 'Specifies the date and time when the interaction occurred.'),
+        notes:text (sourcetypeid = '12', sourcetypesize = '2147483647', description = 'Contains supplementary information or remarks related to the interaction.')
     )
     FOLDER = '/1 - dataconnection/2 - base views'
     CONSTRAINT 'PK__Interact__605F8FE6E4DAE0C3' PRIMARY KEY ( 'interaction_id' )
