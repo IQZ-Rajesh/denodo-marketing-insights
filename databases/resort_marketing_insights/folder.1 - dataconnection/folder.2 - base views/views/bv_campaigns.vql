@@ -17,12 +17,12 @@ CREATE OR REPLACE WRAPPER JDBC "bv_Campaigns"
     INDEX 'PK__Campaign__905B681C6845D663' CLUSTER UNIQUE PRIMARY ( 'campaign_id' );
 
 CREATE OR REPLACE TABLE bv_campaigns I18N us_est (
-        campaign_id:int (notnull, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10'),
-        campaign_name:text (sourcetypeid = '12', sourcetypesize = '100'),
-        start_date:localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10'),
-        end_date:localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10'),
-        budget:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '2', sourcetypesize = '18'),
-        status:text (sourcetypeid = '12', sourcetypesize = '50')
+        campaign_id:int (notnull, sourcetypeid = '4', sourcetyperadix = '10', sourcetypedecimals = '0', sourcetypesize = '10', description = 'Represents a unique identifier for each campaign, ensuring distinction and tracking across records.'),
+        campaign_name:text (sourcetypeid = '12', sourcetypesize = '100', description = 'Stores the name or title of the campaign, helping to identify and classify it within marketing or organizational contexts.'),
+        start_date:localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10', description = 'Indicates the date on which the campaign is set to begin, marking the commencement of its activities.'),
+        end_date:localdate (sourcetypeid = '91', sourcetypedecimals = '0', sourcetypesize = '10', description = 'Specifies the date when the campaign is scheduled to conclude, signaling the end of its operations.'),
+        budget:decimal (sourcetypeid = '3', sourcetyperadix = '10', sourcetypedecimals = '2', sourcetypesize = '18', description = 'Represents the allocated monetary resources for the campaign, reflecting its financial planning and capacity.'),
+        status:text (sourcetypeid = '12', sourcetypesize = '50', description = 'Denotes the current standing or progress of the campaign, such as whether it is active, completed, or paused.')
     )
     FOLDER = '/1 - dataconnection/2 - base views'
     CONSTRAINT 'PK__Campaign__905B681C6845D663' PRIMARY KEY ( 'campaign_id' )
